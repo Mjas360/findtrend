@@ -1,0 +1,6 @@
+.app {
+  width: clamp(320px, 75vw, 1280px);
+  height: 100vh;
+  /* padding: 24px 10px; */
+  color: #333333;
+}
