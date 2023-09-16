@@ -7,15 +7,13 @@ export const AppWrapperStyles = styled.section<{
   $bgColor?: string;
   $bgImg?: string;
 }>`
-  //width: clamp(320px, 100vw, 1280px);
   display: flex;
-  align-items: center;
+
   justify-content: center;
   background: ${(props) => props.$bgColor || "none"};
   background-image: url(${(props) => props.$bgImg});
 `;
 
-//  design --
 export const NavbarStyle = styled.nav`
   width: 100%;
   height: 100px;
@@ -48,11 +46,15 @@ export const NavbarStyle = styled.nav`
   }
 `;
 
-export const FlexWithCustomGapStyles = styled.div<{ $gap?: number }>`
+export const FlexWithCustomGapStyles = styled.div<{
+  $gap?: number;
+  $vertical?: boolean;
+}>`
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: ${(props) => `clamp(24px, 2vw, ${props.$gap}px)` || "10px"};
+  flex-direction: ${(props) => (props.$vertical ? "column" : "row")};
+  gap: ${(props) => `clamp(0px, 2vw, ${props.$gap}px)` || "10px"};
 `;
 
 export const ButtonStyles = styled.button<{ $btnType?: string }>`
@@ -92,14 +94,16 @@ export const AppTitleStyles = styled.p<{ $light?: boolean }>`
 `;
 
 export const HeroStyles = styled(PgeResponsiveWidth)`
-  height: 400px;
+  height: auto;
 `;
 
 const fadeIn = keyframes`
   from {
-    transform: translateY(-300px);
+    opacity: .8;
+    transform: translateY(-100px);
   }
   to {
+    opacity: 1;
     transform: translateY(0);
   }
 `;
@@ -119,7 +123,193 @@ export const MenuStyles = styled.div`
   left: 0;
   z-index: 9;
 
-  animation: ${fadeIn} 0.4s ease-in;
+  animation: ${fadeIn} 0.3s ease-in;
   transform-origin: top;
   transform-style: preserve-3d;
+`;
+
+export const HeroH1 = styled.h1<{
+  $maxFontsize: number;
+  $minFontsize: number;
+}>`
+  color: #fff;
+  text-align: center;
+  font-size: 100px;
+  font-weight: 900;
+  line-height: 140%;
+  text-align: center;
+  white-space: nowrap;
+  margin: 0;
+
+  font-size: ${(props) => `${props.$maxFontsize}` + "px"};
+  @media (max-width: 767px) {
+    font-size: ${(props) => props.$minFontsize + "px"};
+  }
+`;
+
+export const Paragraph = styled.p<{ $color?: string }>`
+  color: ${(props) => props.$color};
+  text-align: center;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%;
+  width: 666px;
+  margin: 0;
+
+  @media (max-width: 767px) {
+    width: 286px;
+    font-size: 14px;
+  }
+`;
+
+export const FancyButton = styled(ButtonStyles)`
+  background: #a8ff35;
+  padding: 20px 32px;
+  font-weight: 700;
+  margin-top: 40px;
+
+  @media (max-width: 767px) {
+    margin-top: 32px;
+    padding: 12px 24px;
+  }
+`;
+
+export const TextAndArrow = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  span {
+    width: 93px;
+    transform: rotate(6deg);
+    color: #fff;
+    text-align: center;
+    font-family: New; // pending font
+    font-size: 14px;
+    font-weight: 400;
+  }
+
+  animation: rotateAnimation 2s ease-in-out infinite;
+
+  @media (max-width: 1200px) {
+    display: none;
+  }
+
+  @keyframes rotateAnimation {
+    0% {
+      transform: rotate(0deg);
+    }
+    50% {
+      transform: rotate(6deg);
+    }
+    100% {
+      transform: rotate(0deg);
+    }
+  }
+  @media (max-width: 767px) {
+    display: none;
+  }
+`;
+
+export const FancyFloatingCard = styled.div`
+  width: 280px;
+  height: 82px;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: #181818;
+  display: flex;
+  align-items: center;
+  padding: 0px 40px;
+  gap: 16px;
+  position: relative;
+
+  p {
+    color: #fff;
+    text-align: center;
+    font-size: 24px;
+    font-weight: 400;
+    white-space: nowrap;
+  }
+  ._close {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    right: 0;
+    width: 84.645px;
+    height: 82px;
+    transform: rotate(-4deg);
+    flex-shrink: 0;
+    font-weight: 600;
+    cursor: pointer;
+    background: linear-gradient(
+      270deg,
+      #181818 53.65%,
+      rgba(24, 24, 24, 0.8) 100%
+    );
+  }
+  @media (max-width: 767px) {
+    width: 200px;
+    height: 70px;
+    p {
+      font-size: 20px;
+    }
+  }
+`;
+
+export const FancyFloatingCardWrapper = styled.div<{
+  $zIndex?: number;
+  $marginTop?: number;
+  $marginLeft?: number;
+  $rotate?: string;
+}>`
+  background: rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.3);
+
+  padding: 0px 8px 8px 8px;
+  position: absolute;
+
+  z-index: ${(props) => props.$zIndex};
+
+  margin-left: ${(props) => props.$marginLeft + "px"};
+  margin-top: ${(props) => props.$marginTop + "px"};
+  transform: ${(props) => props.$rotate};
+  animation: all 0.5s ease-in-out;
+  @media (max-width: 1200px) {
+    margin-left: 0px;
+    display: flex;
+    position: relative;
+    margin-left: 0px;
+    margin-top: 0px;
+  }
+`;
+
+export const FancyFloatingCardResponsiveWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  margin-top: 96px;
+  padding-bottom: 200px;
+
+  ._container_fancyFloatingCard {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 1000px;
+    margin: 0px auto;
+  }
+
+  @media (max-width: 1200px) {
+    margin-top: 60px;
+    padding-bottom: 10px;
+    min-height: 200px;
+    ._container_fancyFloatingCard {
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: auto;
+    }
+  }
 `;

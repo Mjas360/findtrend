@@ -1,8 +1,6 @@
 .app {
   /* width: clamp(320px, 90vw, 1280px); */
-  width: 100vw;
-  height: 100vh;
-  /* padding: 24px 10px; */
+  /* width: 100vw; */
+  height: auto;
   color: #333333;
- 
 }
