@@ -9,7 +9,7 @@ import {
   FancyFloatingCardResponsiveWrapper,
   FancyFloatingCardWrapper,
   FlexWithCustomGapStyles,
-  HeroH1,
+  H1,
   HeroStyles,
   Paragraph,
   TextAndArrow,
@@ -18,11 +18,20 @@ import Navbar from "./Navbar";
 import { useState } from "react";
 
 export default function Hero() {
-  const [arr, setArr] = useState(FancyFloatingCardTextAndIcon);
+  const [hiddenCards, setHiddenCards] = useState<Array<number>>([]);
 
-  const deleteCard = (index: number) => {
-    const newArray = arr.filter((_, i) => i !== index);
-    setArr(newArray);
+  const hideCard = (index: number) => {
+    setHiddenCards([...hiddenCards, index]);
+  };
+
+  ///----delete card transition
+  const headingVariants = (rotateValue?: number) => ({
+    initial: { opacity: 0, y: -20, rotate: 0 },
+    animate: { opacity: 1, y: 0, rotate: rotateValue },
+  });
+
+  const headingTransition = {
+    duration: 0.5,
   };
 
   return (
@@ -31,10 +40,10 @@ export default function Hero() {
         <Navbar />
         <div style={{ margin: "clamp(40px, 4vw, 80px)  0" }}>
           <FlexWithCustomGapStyles $vertical $gap={24}>
-            <HeroH1 $maxFontsize={72} $minFontsize={32}>
+            <H1 $maxFontsize={72} $minFontsize={32}>
               Minimize your tabs. <br />
               Find the trends!
-            </HeroH1>
+            </H1>
             <Paragraph $color="#8B8B8B">
               Don’t let your computer memories consumes all of those browser
               tabs.
@@ -45,24 +54,29 @@ export default function Hero() {
               <FancyButton $btnType="primary">Get Started 🔥</FancyButton>
               <TextAndArrow>
                 <span>All research start from here</span>
-                <img src={Arrow} alt="arrow" />
+                <img src={Arrow} alt="fancy-arrow-white" />
               </TextAndArrow>
             </FlexWithCustomGapStyles>
           </FlexWithCustomGapStyles>
 
           <FancyFloatingCardResponsiveWrapper>
             <div className="_container_fancyFloatingCard">
-              {arr?.map((item, index) => (
+              {FancyFloatingCardTextAndIcon?.map((item, index) => (
                 <FancyFloatingCardWrapper
+                  variants={headingVariants(item.rotate)}
+                  initial="initial"
+                  animate={hiddenCards.includes(index) ? "initial" : "animate"}
+                  transition={headingTransition}
                   $zIndex={item.zIndex}
                   $marginTop={item.marginTop}
-                  $marginLeft={index === 0 ? 0 : 220 * index}
-                  $rotate={item.rotate}
+                  $marginLeft={item.marginLeft}
+                  whileTap={"initial"}
+                  key={"_container_fancyFloatingCard_" + index}
                 >
                   <FancyFloatingCard>
                     <img src={item.logo} alt="twitter" width={31} height={31} />
                     <p>{item.text}</p>
-                    <div className="_close" onClick={() => deleteCard(index)}>
+                    <div className="_close" onClick={() => hideCard(index)}>
                       <AiOutlineClose size={20} color="#FFF" />
                     </div>
                   </FancyFloatingCard>

@@ -1,4 +1,5 @@
 import styled, { keyframes } from "styled-components";
+import { motion } from "framer-motion";
 
 const PgeResponsiveWidth = styled.div`
   width: clamp(320px, 90vw, 1280px);
@@ -51,10 +52,11 @@ export const FlexWithCustomGapStyles = styled.div<{
   $vertical?: boolean;
 }>`
   display: flex;
+  position: relative;
   align-items: center;
   justify-content: center;
   flex-direction: ${(props) => (props.$vertical ? "column" : "row")};
-  gap: ${(props) => `clamp(0px, 2vw, ${props.$gap}px)` || "10px"};
+  gap: ${(props) => `clamp(0px, 5vw, ${props.$gap}px)` || "10px"};
 `;
 
 export const ButtonStyles = styled.button<{ $btnType?: string }>`
@@ -128,11 +130,12 @@ export const MenuStyles = styled.div`
   transform-style: preserve-3d;
 `;
 
-export const HeroH1 = styled.h1<{
+export const H1 = styled.h1<{
   $maxFontsize: number;
   $minFontsize: number;
+  $color?: string;
 }>`
-  color: #fff;
+  color: ${(props) => props.$color || "#fff"};
   text-align: center;
   font-size: 100px;
   font-weight: 900;
@@ -175,14 +178,21 @@ export const FancyButton = styled(ButtonStyles)`
   }
 `;
 
-export const TextAndArrow = styled.div`
+export const TextAndArrow = styled.div<{
+  $color?: string;
+  $inverse?: boolean;
+  $alignEnd?: boolean;
+  $displayOnSmallScreen?: boolean;
+  $absolute?: boolean;
+}>`
   display: flex;
-  flex-direction: column;
-  align-items: start;
+  flex-direction: ${(props) => (props.$inverse ? "column-reverse" : "column")};
+  align-items: ${(props) => (props.$alignEnd ? "end" : "start")};
+
   span {
     width: 93px;
     transform: rotate(6deg);
-    color: #fff;
+    color: ${(props) => props.$color || "#FFF"};
     text-align: center;
     font-family: New; // pending font
     font-size: 14px;
@@ -192,8 +202,14 @@ export const TextAndArrow = styled.div`
   animation: rotateAnimation 2s ease-in-out infinite;
 
   @media (max-width: 1200px) {
-    display: none;
+    display: ${(props) => (props.$displayOnSmallScreen ? "flex" : "none")};
   }
+
+  /* @media (max-width: 500px) {
+    position: ${(props) => (props.$absolute ? "absolute" : "relative")};
+    left: 0;
+    top: 0;
+  } */
 
   @keyframes rotateAnimation {
     0% {
@@ -205,9 +221,6 @@ export const TextAndArrow = styled.div`
     100% {
       transform: rotate(0deg);
     }
-  }
-  @media (max-width: 767px) {
-    display: none;
   }
 `;
 
@@ -257,11 +270,12 @@ export const FancyFloatingCard = styled.div`
   }
 `;
 
-export const FancyFloatingCardWrapper = styled.div<{
+/* transform: ${(props) => props.$rotate}; */
+// $rotate?: string;
+export const FancyFloatingCardWrapper = styled(motion.div)<{
   $zIndex?: number;
   $marginTop?: number;
   $marginLeft?: number;
-  $rotate?: string;
 }>`
   background: rgba(0, 0, 0, 0.5);
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.3);
@@ -271,12 +285,11 @@ export const FancyFloatingCardWrapper = styled.div<{
 
   z-index: ${(props) => props.$zIndex};
 
-  margin-left: ${(props) => props.$marginLeft + "px"};
+  left: ${(props) => props.$marginLeft + "px"};
   margin-top: ${(props) => props.$marginTop + "px"};
-  transform: ${(props) => props.$rotate};
   animation: all 0.5s ease-in-out;
   @media (max-width: 1200px) {
-    margin-left: 0px;
+    left: 0px;
     display: flex;
     position: relative;
     margin-left: 0px;
@@ -311,5 +324,32 @@ export const FancyFloatingCardResponsiveWrapper = styled.div`
       justify-content: center;
       width: auto;
     }
+  }
+`;
+
+export const SectionTwoStyles = styled.div`
+  padding: clamp(80px, 10vw, 140px) 0px;
+  overflow: hidden;
+  box-sizing: border-box;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const CustumDivWithPadding = styled.div<{
+  $paddingLg?: string;
+  $paddingMd?: string;
+  $bgColor?: string;
+  $borderRadiusLg?: string;
+  $borderRadiusMd?: string;
+}>`
+  padding: ${(props) => props.$paddingLg || "auto"};
+  background: ${(props) => props.$bgColor || "#FFF"};
+  border-radius: ${(props) => props.$borderRadiusLg || "0px"};
+
+  @media (max-width: 767px) {
+    padding: ${(props) => props.$paddingMd || "auto"};
+    border-radius: ${(props) => props.$borderRadiusMd || "0px"};
   }
 `;
