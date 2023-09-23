@@ -30,7 +30,7 @@ Explore the original Figma design that inspired this project: [FindTrend Figma D
 
 ## Live Preview
 
-Check out the live preview of the FindTrend Landing Page: [Live Preview](https://pending-url).
+Check out the live preview of the FindTrend Landing Page: [Live Preview](https://findtrend.onrender.com/).
 
 ## Getting Started
 
@@ -49,8 +49,8 @@ To get started with the FindTrend Landing Page project, follow these simple step
 3. Launch the development server:
 
    ```bash
-   npm start
-You can now access your project locally by visiting http://localhost:3000 in your web browser.
+   npm run dev
+You can now access your project locally on your development server: (http://your-dev-server/).
 
 ## Usage
 
