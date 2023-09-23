@@ -1,5 +1,6 @@
 import { useState } from "react";
-import logo from "../../../assets/findtrend_logo.svg";
+import { AiOutlineClose } from "react-icons/ai";
+import { HiOutlineMenuAlt4 } from "react-icons/hi";
 import { NavlinksTitle } from "../../../constants";
 import {
   AppTitleStyles,
@@ -9,8 +10,7 @@ import {
   NavLinkStyles,
   NavbarStyle,
 } from "../../../custom-style-components/landingPageStyles";
-import { HiOutlineMenuAlt4 } from "react-icons/hi";
-import { AiOutlineClose } from "react-icons/ai";
+import { getImage } from "../../utils/utility";
 
 export default function Navbar() {
   const [openMenu, setOpenMenu] = useState(false);
@@ -18,7 +18,12 @@ export default function Navbar() {
     <NavbarStyle>
       <div className="window_nav">
         <FlexWithCustomGapStyles $gap={10}>
-          <img src={logo} width={40} height={40} alt="logo" />
+          <img
+            src={getImage("findtrend_logo.svg")}
+            width={40}
+            height={40}
+            alt="logo"
+          />
           <AppTitleStyles $light>Findtrend</AppTitleStyles>
         </FlexWithCustomGapStyles>
         <FlexWithCustomGapStyles $gap={40}>
@@ -35,7 +40,12 @@ export default function Navbar() {
       </div>
       <div className="mobile_nav">
         <div className="logo_n_icon">
-          <img src={logo} width={40} height={40} alt="logo" />
+          <img
+            src={getImage("findtrend_logo.svg")}
+            width={40}
+            height={40}
+            alt="logo"
+          />
           <NavLinkStyles onClick={() => setOpenMenu((prev) => !prev)}>
             {openMenu ? <AiOutlineClose /> : <HiOutlineMenuAlt4 />}
           </NavLinkStyles>

@@ -1,7 +1,4 @@
 import { AiOutlineClose } from "react-icons/ai";
-import logo from "../../../assets/findtrend_logo.svg";
-import rightArrow from "../../../assets/svgs/arrow_4.svg";
-import leftArrow from "../../../assets/svgs/arrow_6.svg";
 
 import {
   AppWrapperStyles,
@@ -13,6 +10,7 @@ import {
   SectionTwoStyles,
   TextAndArrow,
 } from "../../../custom-style-components/landingPageStyles";
+import { getImage } from "../../utils/utility";
 
 export default function SectionTwo() {
   return (
@@ -25,7 +23,10 @@ export default function SectionTwo() {
           <FlexWithCustomGapStyles $gap={24}>
             <TextAndArrow $color="#000" $inverse $alignEnd>
               <span>solution for discover a trend</span>
-              <img src={leftArrow} alt="fancy-arrow-white" />
+              <img
+                src={getImage("arrow_6.svg", "svgs")}
+                alt="fancy-arrow-white"
+              />
             </TextAndArrow>
             <CustumDivWithPadding
               $paddingLg="60px 80px"
@@ -35,7 +36,12 @@ export default function SectionTwo() {
               $borderRadiusMd="14px"
             >
               <FancyFloatingCard>
-                <img src={logo} alt="twitter" width={31} height={31} />
+                <img
+                  src={getImage("findtrend_logo.svg")}
+                  alt="logo"
+                  width={31}
+                  height={31}
+                />
                 <p>Findtrend - Elon Musk</p>
                 <div className="_close">
                   <AiOutlineClose size={20} color="#FFF" />
@@ -44,7 +50,10 @@ export default function SectionTwo() {
             </CustumDivWithPadding>
             <TextAndArrow $color="#000">
               <span>You just need one tab now</span>
-              <img src={rightArrow} alt="fancy-arrow-white" />
+              <img
+                src={getImage("arrow_4.svg", "svgs")}
+                alt="fancy-arrow-white"
+              />
             </TextAndArrow>
           </FlexWithCustomGapStyles>
           <Paragraph>

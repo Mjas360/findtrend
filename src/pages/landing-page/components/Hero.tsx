@@ -1,6 +1,5 @@
+import { useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
-import bgSvg from "../../../assets/svgs/Ornament.svg";
-import Arrow from "../../../assets/svgs/arrow_01.svg";
 import { FancyFloatingCardTextAndIcon } from "../../../constants";
 import {
   AppWrapperStyles,
@@ -14,8 +13,8 @@ import {
   Paragraph,
   TextAndArrow,
 } from "../../../custom-style-components/landingPageStyles";
+import { getImage } from "../../utils/utility";
 import Navbar from "./Navbar";
-import { useState } from "react";
 
 export default function Hero() {
   const [hiddenCards, setHiddenCards] = useState<Array<number>>([]);
@@ -35,7 +34,10 @@ export default function Hero() {
   };
 
   return (
-    <AppWrapperStyles $bgColor="black" $bgImg={bgSvg}>
+    <AppWrapperStyles
+      $bgColor="black"
+      $bgImg={getImage("ornament.svg", "svgs")}
+    >
       <HeroStyles>
         <Navbar />
         <div style={{ margin: "clamp(40px, 4vw, 80px)  0" }}>
@@ -54,7 +56,10 @@ export default function Hero() {
               <FancyButton $btnType="primary">Get Started 🔥</FancyButton>
               <TextAndArrow>
                 <span>All research start from here</span>
-                <img src={Arrow} alt="fancy-arrow-white" />
+                <img
+                  src={getImage("arrow_01.svg", "svgs")}
+                  alt="fancy-arrow-white"
+                />
               </TextAndArrow>
             </FlexWithCustomGapStyles>
           </FlexWithCustomGapStyles>
@@ -74,7 +79,7 @@ export default function Hero() {
                   key={"_container_fancyFloatingCard_" + index}
                 >
                   <FancyFloatingCard>
-                    <img src={item.logo} alt="twitter" width={31} height={31} />
+                    <img src={getImage(item.logo, "svgs")} alt="twitter" width={31} height={31} />
                     <p>{item.text}</p>
                     <div className="_close" onClick={() => hideCard(index)}>
                       <AiOutlineClose size={20} color="#FFF" />

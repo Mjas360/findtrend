@@ -9,7 +9,7 @@ export const NavlinksTitle = [
 export const FancyFloatingCardTextAndIcon = [
   {
     text: "Cryptopunk - Search",
-    logo: "../src/assets/svgs/twitter.svg",
+    logo: "twitter.svg", //"../src/assets/svgs/twitter.svg",
     rotate: -4,
     zIndex: 4,
     marginTop: 0,
@@ -17,7 +17,7 @@ export const FancyFloatingCardTextAndIcon = [
   },
   {
     text: "Popular Design - Search",
-    logo: "../src/assets/svgs/pinintrest.svg",
+    logo: "pinintrest.svg", //"../src/assets/svgs/pinintrest.svg",
     rotate: 2,
     marginLeft: 220, //600,
     zIndex: 3,
@@ -25,7 +25,7 @@ export const FancyFloatingCardTextAndIcon = [
   },
   {
     text: "Product Design - Search",
-    logo: "../src/assets/svgs/facebook.svg",
+    logo: "facebook.svg", //"../src/assets/svgs/facebook.svg",
     rotate: -2,
     marginLeft: 440, //387,
     zIndex: 2,
@@ -33,7 +33,7 @@ export const FancyFloatingCardTextAndIcon = [
   },
   {
     text: "Elon Musk - Search",
-    logo: "../src/assets/svgs/dribble.svg",
+    logo: "dribble.svg", //"../src/assets/svgs/dribble.svg",
     rotate: 8,
     marginLeft: 660, //1100,
     zIndex: 1,
