@@ -1,4 +1,4 @@
-import React from "react";
+import { SectionThreeTextArray } from "../../../constants";
 import {
   AppWrapperStyles,
   FlexWithCustomGapStyles,
@@ -8,7 +8,6 @@ import {
   SectionsStyles,
   Span,
 } from "../../../custom-style-components/landingPageStyles";
-import { SectionThreeTextArray } from "../../../constants";
 import { getImage } from "../../utils/utility";
 
 export default function SectionThree() {

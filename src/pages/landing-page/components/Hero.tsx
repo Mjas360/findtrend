@@ -15,8 +15,8 @@ import {
 } from "../../../custom-style-components/landingPageStyles";
 import {
   getImage,
-  headingVariants,
   headingTransition,
+  headingVariants,
   hideCard,
 } from "../../utils/utility";
 import Navbar from "./Navbar";
