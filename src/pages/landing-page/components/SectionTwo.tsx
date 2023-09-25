@@ -1,66 +1,67 @@
-import { AiOutlineClose } from "react-icons/ai";
-
+import { SectionThreeTextArray } from "../../../constants";
 import {
   AppWrapperStyles,
-  CustumDivWithPadding,
-  FancyFloatingCard,
   FlexWithCustomGapStyles,
+  GridContainer,
   H1,
-  Paragraph,
+  ImgWrapper,
   SectionsStyles,
-  TextAndArrow,
+  Span,
 } from "../../../custom-style-components/landingPageStyles";
 import { getImage } from "../../utils/utility";
 
 export default function SectionTwo() {
   return (
-    <AppWrapperStyles $bgColor="#A8FF35">
+    <AppWrapperStyles $bgColor="#FFF">
       <SectionsStyles>
-        <FlexWithCustomGapStyles $gap={60} $minGap={20} $vertical>
-          <H1 $color="#000" $maxFontsize={72} $minFontsize={32}>
-            Open new tabs is sh*t
-          </H1>
-          <FlexWithCustomGapStyles $gap={24}>
-            <TextAndArrow $color="#000" $inverse $alignEnd>
-              <span>solution for discover a trend</span>
-              <img
-                src={getImage("arrow_6.svg", "svgs")}
-                alt="fancy-arrow-white"
-              />
-            </TextAndArrow>
-            <CustumDivWithPadding
-              $paddingLg="60px 80px"
-              $paddingMd="24px"
-              $bgColor="#FFF"
-              $borderRadiusLg="16px"
-              $borderRadiusMd="14px"
-            >
-              <FancyFloatingCard>
-                <img
-                  src={getImage("findtrend_logo.svg")}
-                  alt="logo"
-                  width={31}
-                  height={31}
-                />
-                <p>Findtrend - Elon Musk</p>
-                <div className="_close">
-                  <AiOutlineClose size={20} color="#FFF" />
-                </div>
-              </FancyFloatingCard>
-            </CustumDivWithPadding>
-            <TextAndArrow $color="#000">
-              <span>You just need one tab now</span>
-              <img
-                src={getImage("arrow_4.svg", "svgs")}
-                alt="fancy-arrow-white"
-              />
-            </TextAndArrow>
+        <FlexWithCustomGapStyles $vertical $gap={280} $minGap={160}>
+          <FlexWithCustomGapStyles $gap={5} $minGap={0} $vertical>
+            {SectionThreeTextArray.map((text, index) => (
+              <H1
+                key={text + index}
+                $maxFontsize={64}
+                $minFontsize={30}
+                $color={index <= 2 ? "#000" : "#ADADAD"}
+                $alignText="left"
+              >
+                {index === 2 ? (
+                  <>
+                    {text} <Span $color="#ADADAD">an application that can</Span>
+                  </>
+                ) : (
+                  text
+                )}
+              </H1>
+            ))}
           </FlexWithCustomGapStyles>
-          <Paragraph>
-            A solution for your browser tabs and don’t make your device get
-            slower over time. Get ease and faster to discover a trend with just
-            one tab.
-          </Paragraph>
+          <FlexWithCustomGapStyles $vertical $gap={80}>
+            <H1 $color="#000" $maxFontsize={64} $minFontsize={30}>
+              Findtrend make +1000 Startup grow
+            </H1>
+            <GridContainer>
+              {Array(16)
+                .fill(null)
+                .map((_, index) => {
+                  const brandImg = getImage(`brand_${index + 1}.png`, "png");
+                  const brandImgSm = getImage(
+                    `brand_sm_${index + 1}.png`,
+                    "png"
+                  );
+                  return (
+                    <ImgWrapper
+                      key={_ + index}
+                      $bgColor="#F5F5F5"
+                      $maxWidth={266}
+                      $maxHeight={120}
+                      $minWidth={150}
+                      $minHeight={72}
+                      $bgImg={brandImg}
+                      $bgImgSm={brandImgSm}
+                    />
+                  );
+                })}
+            </GridContainer>
+          </FlexWithCustomGapStyles>
         </FlexWithCustomGapStyles>
       </SectionsStyles>
     </AppWrapperStyles>

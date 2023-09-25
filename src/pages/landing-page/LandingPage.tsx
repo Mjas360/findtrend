@@ -1,6 +1,6 @@
 import Hero from "./components/Hero";
-import SectionThree from "./components/SectionThree";
-import SectionTwo from "./components/SectionTwo";
+import SectionThree from "./components/SectionTwo";
+import SectionTwo from "./components/SectionOne";
 
 export default function LandingPage() {
   return (

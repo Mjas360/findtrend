@@ -172,7 +172,7 @@ export const H1 = styled.h1<{
     }
   }};
 
-  width: 100%;
+  width: 95%;
   font-size: ${(props) => `${props.$maxFontsize}` + "px"};
   @media (max-width: 767px) {
     font-size: ${(props) => props.$minFontsize + "px"};
@@ -425,4 +425,5 @@ export const GridContainer = styled.div`
     grid-template-columns: repeat(2, 1fr);
     gap: 14px;
   }
+
 `;

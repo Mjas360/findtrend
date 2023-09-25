@@ -16,7 +16,7 @@ import {
 import {
   getImage,
   headingTransition,
-  headingVariants,
+  heroVariants,
   hideCard,
 } from "../../utils/utility";
 import Navbar from "./Navbar";
@@ -57,35 +57,40 @@ export default function Hero() {
 
           <FancyFloatingCardResponsiveWrapper>
             <div className="_container_fancyFloatingCard">
-              {FancyFloatingCardTextAndIcon?.map((item, index) => (
-                <FancyFloatingCardWrapper
-                  variants={headingVariants(item.rotate)}
-                  initial="initial"
-                  animate={hiddenCards.includes(index) ? "initial" : "animate"}
-                  transition={headingTransition}
-                  $zIndex={item.zIndex}
-                  $marginTop={item.marginTop}
-                  $marginLeft={item.marginLeft}
-                  whileTap={"initial"}
-                  key={"_container_fancyFloatingCard_" + index}
-                >
-                  <FancyFloatingCard>
-                    <img
-                      src={getImage(item.logo, "svgs")}
-                      alt="twitter"
-                      width={31}
-                      height={31}
-                    />
-                    <p>{item.text}</p>
-                    <div
-                      className="_close"
-                      onClick={() => hideCard(index, setHiddenCards)}
-                    >
-                      <AiOutlineClose size={20} color="#FFF" />
-                    </div>
-                  </FancyFloatingCard>
-                </FancyFloatingCardWrapper>
-              ))}
+              {FancyFloatingCardTextAndIcon?.map((item, index) => {
+                // const yPosition = scrollYProgress + 10;
+                return (
+                  <FancyFloatingCardWrapper
+                    variants={heroVariants(item.rotate)}
+                    initial="initial"
+                    animate={
+                      hiddenCards.includes(index) ? "initial" : "animate"
+                    }
+                    transition={headingTransition}
+                    $zIndex={item.zIndex}
+                    $marginTop={item.marginTop}
+                    $marginLeft={item.marginLeft}
+                    whileTap={"initial"}
+                    key={"_container_fancyFloatingCard_" + index}
+                  >
+                    <FancyFloatingCard>
+                      <img
+                        src={getImage(item.logo, "svgs")}
+                        alt="twitter"
+                        width={31}
+                        height={31}
+                      />
+                      <p>{item.text}</p>
+                      <div
+                        className="_close"
+                        onClick={() => hideCard(index, setHiddenCards)}
+                      >
+                        <AiOutlineClose size={20} color="#FFF" />
+                      </div>
+                    </FancyFloatingCard>
+                  </FancyFloatingCardWrapper>
+                );
+              })}
             </div>
           </FancyFloatingCardResponsiveWrapper>
         </div>

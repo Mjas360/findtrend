@@ -5,9 +5,9 @@ export const getImage = (name: string, folder: string = "") => {
   return `/assets/${folder}/${name}`;
 };
 
-export const headingVariants = (rotateValue?: number) => ({
+export const heroVariants = (rotateValue?: number) => ({
   initial: { opacity: 0, y: -20, rotate: 0 },
-  animate: { opacity: 1, y: 0, rotate: rotateValue },
+  animate: { opacity: 1, rotate: rotateValue },
 });
 
 export const headingTransition = {
