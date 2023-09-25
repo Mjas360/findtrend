@@ -1,5 +1,5 @@
-import styled, { keyframes } from "styled-components";
 import { motion } from "framer-motion";
+import styled, { keyframes } from "styled-components";
 
 const PgeResponsiveWidth = styled.div`
   width: clamp(320px, 90vw, 1280px);
@@ -49,14 +49,31 @@ export const NavbarStyle = styled.nav`
 
 export const FlexWithCustomGapStyles = styled.div<{
   $gap?: number;
+  $minGap?: number;
   $vertical?: boolean;
+  $aligItems?: "left" | "right" | "center";
 }>`
   display: flex;
   position: relative;
-  align-items: center;
   justify-content: center;
+  align-items: ${(props) => {
+    switch (props.$aligItems) {
+      case "left":
+        return "flex-start";
+      case "right":
+        return "flex-end";
+      case "center":
+      default:
+        return "center";
+    }
+  }};
   flex-direction: ${(props) => (props.$vertical ? "column" : "row")};
-  gap: ${(props) => `clamp(0px, 5vw, ${props.$gap}px)` || "10px"};
+  //gap: ${(props) => `clamp(0px, 45vw, ${props.$gap}px)` || "10px"};
+  gap: ${(props) => props.$gap + "px"};
+
+  @media (max-width: 767px) {
+    gap: ${(props) => props.$minGap + "px"};
+  }
 `;
 
 export const ButtonStyles = styled.button<{ $btnType?: string }>`
@@ -134,16 +151,28 @@ export const H1 = styled.h1<{
   $maxFontsize: number;
   $minFontsize: number;
   $color?: string;
+  $noWrap?: boolean;
+  $alignText?: "left" | "right" | "center";
 }>`
   color: ${(props) => props.$color || "#fff"};
-  text-align: center;
-  font-size: 100px;
   font-weight: 900;
   line-height: 140%;
-  text-align: center;
-  white-space: nowrap;
+  white-space: ${(props) => (props.$noWrap ? "nowrap" : "normal")};
   margin: 0;
 
+  text-align: ${(props) => {
+    switch (props.$alignText) {
+      case "left":
+        return "left";
+      case "right":
+        return "right";
+      case "center":
+      default:
+        return "center";
+    }
+  }};
+
+  width: 100%;
   font-size: ${(props) => `${props.$maxFontsize}` + "px"};
   @media (max-width: 767px) {
     font-size: ${(props) => props.$minFontsize + "px"};
@@ -327,8 +356,8 @@ export const FancyFloatingCardResponsiveWrapper = styled.div`
   }
 `;
 
-export const SectionTwoStyles = styled.div`
-  padding: clamp(80px, 10vw, 140px) 0px;
+export const SectionsStyles = styled(PgeResponsiveWidth)`
+  padding: clamp(80px, 10vw, 140px) 12px;
   overflow: hidden;
   box-sizing: border-box;
   flex-shrink: 0;
@@ -351,5 +380,49 @@ export const CustumDivWithPadding = styled.div<{
   @media (max-width: 767px) {
     padding: ${(props) => props.$paddingMd || "auto"};
     border-radius: ${(props) => props.$borderRadiusMd || "0px"};
+  }
+`;
+
+export const Span = styled.span<{ $color?: string }>`
+  color: ${(props) => props.$color};
+`;
+
+export const ImgWrapper = styled.div<{
+  $bgColor: string;
+  $maxWidth: number;
+  $minWidth: number;
+  $maxHeight: number;
+  $minHeight: number;
+  $bgImg?: string;
+  $bgImgSm?: string;
+}>`
+  background: ${(props) => props.$bgColor};
+  border-radius: 8px;
+  width: ${(props) => props.$maxWidth + "px"};
+  height: ${(props) => props.$maxHeight + "px"};
+
+  background-image: url(${(props) => props.$bgImg});
+  background-position: center center;
+  background-repeat: no-repeat;
+
+  @media (max-width: 767px) {
+    background-image: url(${(props) => props.$bgImgSm});
+    width: ${(props) => props.$minWidth + "px"};
+    height: ${(props) => props.$minHeight + "px"};
+  }
+`;
+
+export const GridContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 32px;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media (max-width: 767px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
   }
 `;

@@ -7,7 +7,7 @@ import {
   FlexWithCustomGapStyles,
   H1,
   Paragraph,
-  SectionTwoStyles,
+  SectionsStyles,
   TextAndArrow,
 } from "../../../custom-style-components/landingPageStyles";
 import { getImage } from "../../utils/utility";
@@ -15,8 +15,8 @@ import { getImage } from "../../utils/utility";
 export default function SectionTwo() {
   return (
     <AppWrapperStyles $bgColor="#A8FF35">
-      <SectionTwoStyles>
-        <FlexWithCustomGapStyles $gap={60} $vertical>
+      <SectionsStyles>
+        <FlexWithCustomGapStyles $gap={60} $minGap={20} $vertical>
           <H1 $color="#000" $maxFontsize={72} $minFontsize={32}>
             Open new tabs is sh*t
           </H1>
@@ -62,7 +62,7 @@ export default function SectionTwo() {
             one tab.
           </Paragraph>
         </FlexWithCustomGapStyles>
-      </SectionTwoStyles>
+      </SectionsStyles>
     </AppWrapperStyles>
   );
 }

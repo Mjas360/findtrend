@@ -40,3 +40,10 @@ export const FancyFloatingCardTextAndIcon = [
     marginTop: 45,
   },
 ];
+
+export const SectionThreeTextArray = [
+  "Findtrend helps you to increase your",
+  "productivity and reduce your computer's",
+  "memory load,",
+  "fulfill your daily browsing needs.",
+];

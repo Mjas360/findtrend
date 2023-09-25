@@ -13,25 +13,16 @@ import {
   Paragraph,
   TextAndArrow,
 } from "../../../custom-style-components/landingPageStyles";
-import { getImage } from "../../utils/utility";
+import {
+  getImage,
+  headingVariants,
+  headingTransition,
+  hideCard,
+} from "../../utils/utility";
 import Navbar from "./Navbar";
 
 export default function Hero() {
   const [hiddenCards, setHiddenCards] = useState<Array<number>>([]);
-
-  const hideCard = (index: number) => {
-    setHiddenCards([...hiddenCards, index]);
-  };
-
-  ///----delete card transition
-  const headingVariants = (rotateValue?: number) => ({
-    initial: { opacity: 0, y: -20, rotate: 0 },
-    animate: { opacity: 1, y: 0, rotate: rotateValue },
-  });
-
-  const headingTransition = {
-    duration: 0.5,
-  };
 
   return (
     <AppWrapperStyles
@@ -41,7 +32,7 @@ export default function Hero() {
       <HeroStyles>
         <Navbar />
         <div style={{ margin: "clamp(40px, 4vw, 80px)  0" }}>
-          <FlexWithCustomGapStyles $vertical $gap={24}>
+          <FlexWithCustomGapStyles $vertical $gap={24} $aligItems="center">
             <H1 $maxFontsize={72} $minFontsize={32}>
               Minimize your tabs. <br />
               Find the trends!
@@ -79,9 +70,17 @@ export default function Hero() {
                   key={"_container_fancyFloatingCard_" + index}
                 >
                   <FancyFloatingCard>
-                    <img src={getImage(item.logo, "svgs")} alt="twitter" width={31} height={31} />
+                    <img
+                      src={getImage(item.logo, "svgs")}
+                      alt="twitter"
+                      width={31}
+                      height={31}
+                    />
                     <p>{item.text}</p>
-                    <div className="_close" onClick={() => hideCard(index)}>
+                    <div
+                      className="_close"
+                      onClick={() => hideCard(index, setHiddenCards)}
+                    >
                       <AiOutlineClose size={20} color="#FFF" />
                     </div>
                   </FancyFloatingCard>
