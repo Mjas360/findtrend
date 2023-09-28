@@ -47,3 +47,30 @@ export const SectionThreeTextArray = [
   "memory load,",
   "fulfill your daily browsing needs.",
 ];
+
+export const tweetImg = [
+  {
+    imgLg: "tweet_1.png",
+    imgSm: "tweet_sm_1.png",
+    minWidth: 339,
+    minHeight: 116,
+    maxWidth: 800,
+    maxHeight: 274,
+  },
+  {
+    imgLg: "tweet_2.png",
+    imgSm: "tweet_sm_2.png",
+    minWidth: 339,
+    minHeight: 334,
+    maxWidth: 800,
+    maxHeight: 804,
+  },
+  {
+    imgLg: "tweet_1.png",
+    imgSm: "tweet_sm_1.png",
+    minWidth: 339,
+    minHeight: 116,
+    maxWidth: 800,
+    maxHeight: 274,
+  },
+];

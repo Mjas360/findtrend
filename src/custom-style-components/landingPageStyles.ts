@@ -70,8 +70,9 @@ export const FlexWithCustomGapStyles = styled.div<{
   flex-direction: ${(props) => (props.$vertical ? "column" : "row")};
   //gap: ${(props) => `clamp(0px, 45vw, ${props.$gap}px)` || "10px"};
   gap: ${(props) => props.$gap + "px"};
+  //width: 100vw;
 
-  @media (max-width: 767px) {
+  @media (max-width: 768px) {
     gap: ${(props) => props.$minGap + "px"};
   }
 `;
@@ -85,7 +86,9 @@ export const ButtonStyles = styled.button<{ $btnType?: string }>`
   padding: 12px 32px;
   outline: none;
   border: none;
-  border-radius: ${(props) => (props.$btnType === "primary" ? "40px" : "none")};
+  border-radius: 40px;
+  /* border-radius: 40px; ${(props) =>
+    props.$btnType === "primary" ? "40px" : "none"}; */
   background: ${(props) => (props.$btnType === "primary" ? "#FFF" : "none")};
   cursor: pointer;
   transition: all 0.2s ease-in-out;
@@ -97,6 +100,25 @@ export const ButtonStyles = styled.button<{ $btnType?: string }>`
   &:active {
     opacity: 0.99;
     scale: 0.9;
+  }
+`;
+
+export const ButtonStylesVarientII = styled(ButtonStyles)<{
+  $bgColor?: string;
+  $padding?: boolean;
+  $fullWidth?: boolean;
+}>`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: ${(props) => props.$bgColor};
+  padding: ${(props) => (props.$padding ? "16px 32px" : "auto")};
+  width: ${(props) => (props.$fullWidth ? "100%" : "auto")};
+
+  @media (max-width: 768px) {
+    padding: ${(props) => (props.$padding ? "12px 24px" : "auto")};
+    font-size: ${(props) => (props.$padding ? "14px" : "auto")};
   }
 `;
 
@@ -174,7 +196,10 @@ export const H1 = styled.h1<{
 
   width: 95%;
   font-size: ${(props) => `${props.$maxFontsize}` + "px"};
-  @media (max-width: 767px) {
+  @media (max-width: 1024px) {
+    white-space: normal;
+  }
+  @media (max-width: 768px) {
     font-size: ${(props) => props.$minFontsize + "px"};
   }
 `;
@@ -189,7 +214,7 @@ export const Paragraph = styled.p<{ $color?: string }>`
   width: 666px;
   margin: 0;
 
-  @media (max-width: 767px) {
+  @media (max-width: 768px) {
     width: 286px;
     font-size: 14px;
   }
@@ -201,7 +226,7 @@ export const FancyButton = styled(ButtonStyles)`
   font-weight: 700;
   margin-top: 40px;
 
-  @media (max-width: 767px) {
+  @media (max-width: 768px) {
     margin-top: 32px;
     padding: 12px 24px;
   }
@@ -290,7 +315,7 @@ export const FancyFloatingCard = styled.div`
       rgba(24, 24, 24, 0.8) 100%
     );
   }
-  @media (max-width: 767px) {
+  @media (max-width: 768px) {
     width: 200px;
     height: 70px;
     p {
@@ -357,6 +382,7 @@ export const FancyFloatingCardResponsiveWrapper = styled.div`
 `;
 
 export const SectionsStyles = styled(PgeResponsiveWidth)`
+  //width: 100vw;
   padding: clamp(80px, 10vw, 140px) 12px;
   overflow: hidden;
   box-sizing: border-box;
@@ -377,7 +403,7 @@ export const CustumDivWithPadding = styled.div<{
   background: ${(props) => props.$bgColor || "#FFF"};
   border-radius: ${(props) => props.$borderRadiusLg || "0px"};
 
-  @media (max-width: 767px) {
+  @media (max-width: 768px) {
     padding: ${(props) => props.$paddingMd || "auto"};
     border-radius: ${(props) => props.$borderRadiusMd || "0px"};
   }
@@ -405,7 +431,10 @@ export const ImgWrapper = styled.div<{
   background-position: center center;
   background-repeat: no-repeat;
 
-  @media (max-width: 767px) {
+  box-sizing: border-box;
+  flex-shrink: 0;
+
+  @media (max-width: 768px) {
     background-image: url(${(props) => props.$bgImgSm});
     width: ${(props) => props.$minWidth + "px"};
     height: ${(props) => props.$minHeight + "px"};
@@ -421,9 +450,21 @@ export const GridContainer = styled.div`
     grid-template-columns: repeat(3, 1fr);
   }
 
-  @media (max-width: 767px) {
+  @media (max-width: 768px) {
     grid-template-columns: repeat(2, 1fr);
     gap: 14px;
   }
+`;
 
+export const Scrollview = styled(FlexWithCustomGapStyles)`
+  //@media (max-width: 768px) {
+  display: flex;
+  overflow-x: auto;
+  width: 90vw;
+  //justify-content: flex-start;
+
+  //align-items: flex-start;
+  /* margin: 0px 40px; */
+  //width: 100vw;
+  //}
 `;

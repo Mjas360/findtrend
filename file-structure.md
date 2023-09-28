@@ -6,11 +6,10 @@
 #### Landing page sections/components
 1. Hero
 2. section 1 (Open new tabs is sh*t)
-3. section 2 (Findtrend helps you to increase your....)
-4. section 3 (Findtrend make +1000 Startup grow)
-5. section 4 (all platform connected to findtrend)
-6. section 5 (Get your best deal)
-7. section 6 (Join us on email for)
+3. section 2 (Findtrend helps you to increase your....) & (Findtrend make +1000 Startup grow)
+4. section 3 (all platform connected to findtrend)
+5. section 4 (Get your best deal)
+6. section 5 (Join us on email for)
 
 #### Components
 1. Navbar

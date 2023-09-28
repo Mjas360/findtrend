@@ -1,11 +1,13 @@
 import Hero from "./components/Hero";
-import SectionThree from "./components/SectionTwo";
-import SectionTwo from "./components/SectionOne";
+import SectionTwo from "./components/SectionTwo";
+import SectionOne from "./components/SectionOne";
+import SectionThree from "./components/SectionThree";
 
 export default function LandingPage() {
   return (
     <div>
       <Hero />
+      <SectionOne />
       <SectionTwo />
       <SectionThree />
     </div>

@@ -23,6 +23,7 @@ export default function SectionTwo() {
                 $minFontsize={30}
                 $color={index <= 2 ? "#000" : "#ADADAD"}
                 $alignText="left"
+                $noWrap
               >
                 {index === 2 ? (
                   <>
