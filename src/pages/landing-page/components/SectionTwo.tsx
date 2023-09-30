@@ -1,14 +1,13 @@
-import { SectionThreeTextArray } from "../../../constants";
+import { LogoSourceLink, SectionThreeTextArray } from "../../../constants";
 import {
   AppWrapperStyles,
   FlexWithCustomGapStyles,
   GridContainer,
   H1,
-  ImgWrapper,
+  ImgWrappers,
   SectionsStyles,
   Span,
 } from "../../../custom-style-components/landingPageStyles";
-import { getImage } from "../../utils/utility";
 
 export default function SectionTwo() {
   return (
@@ -39,28 +38,29 @@ export default function SectionTwo() {
             <H1 $color="#000" $maxFontsize={64} $minFontsize={30}>
               Findtrend make +1000 Startup grow
             </H1>
+
             <GridContainer>
-              {Array(16)
-                .fill(null)
-                .map((_, index) => {
-                  const brandImg = getImage(`brand_${index + 1}.png`, "png");
-                  const brandImgSm = getImage(
-                    `brand_sm_${index + 1}.png`,
-                    "png"
-                  );
-                  return (
-                    <ImgWrapper
-                      key={_ + index}
-                      $bgColor="#F5F5F5"
-                      $maxWidth={266}
-                      $maxHeight={120}
-                      $minWidth={150}
-                      $minHeight={72}
-                      $bgImg={brandImg}
-                      $bgImgSm={brandImgSm}
-                    />
-                  );
-                })}
+              {LogoSourceLink.map((img, index) => (
+                <ImgWrappers
+                  key={"brand_logo_" + index}
+                  $bgColor="#F5F5F5"
+                  $ImgMaxHeight={img.maxHeight}
+                  $ImgMaxWidth={img.maxWidth}
+                  $ImgMinHeight={img.minHeight}
+                  $ImgMinWidth={img.minWidth}
+                  $maxHeight={120}
+                  $maxWidth={266}
+                  $minHeight={74}
+                  $minWidth={162}
+                >
+                  <img
+                    src={img.src}
+                    width={190}
+                    height={40}
+                    alt={"brand_logo_" + index}
+                  />
+                </ImgWrappers>
+              ))}
             </GridContainer>
           </FlexWithCustomGapStyles>
         </FlexWithCustomGapStyles>
