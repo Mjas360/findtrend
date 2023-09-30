@@ -245,3 +245,49 @@ export const TweetScreenShots = [
     minWidth: 339,
   },
 ];
+
+export const PricingInfo = [
+  {
+    type: "Personal",
+    subtitle: "Special first packet for all",
+    price: "8",
+    bgColor: "#FAFAFA",
+    btnColor: "#A8FF35",
+    btnTextColor: "#000",
+    offers: [
+      "Up to 5 page each group",
+      "Up to 10 group page",
+      "5 Days group page saved",
+    ],
+  },
+  {
+    type: "Regular",
+    subtitle: "Recommended for personal pro",
+    price: "20",
+    bgColor: "#A8FF35",
+    btnColor: "#000",
+    btnTextColor: "#FFF",
+    offers: [
+      "Up to 15 page each group",
+      "Download page up to 20 page",
+      "Up to 10 group page",
+      "15 Days group page saved",
+    ],
+  },
+  {
+    type: "Premium",
+    subtitle: "Packet for Startup & Company",
+    price: "48",
+    bgColor: "#FAFAFA",
+    btnColor: "#A8FF35",
+    btnTextColor: "#000",
+    offers: [
+      "Unlimited group pages",
+      "Unlimited download page",
+      "Unlimited page each group",
+      "Customize sorting group pages",
+      "Customize group page name",
+      "30 Days group page saved",
+    ],
+  },
+];
