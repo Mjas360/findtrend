@@ -3,6 +3,7 @@ import SectionTwo from "./components/SectionTwo";
 import SectionOne from "./components/SectionOne";
 import SectionThree from "./components/SectionThree";
 import SectionFour from "./components/SectionFour";
+import SectionFive from "./components/SectionFive";
 
 export default function LandingPage() {
   return (
@@ -12,6 +13,7 @@ export default function LandingPage() {
       <SectionTwo />
       <SectionThree />
       <SectionFour />
+      <SectionFive />
     </div>
   );
 }
