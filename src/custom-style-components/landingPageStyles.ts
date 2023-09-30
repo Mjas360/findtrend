@@ -430,6 +430,7 @@ export const ImgWrapper = styled.div<{
   background-image: url(${(props) => props.$bgImg});
   background-position: center center;
   background-repeat: no-repeat;
+  background-size: contain;
 
   box-sizing: border-box;
   flex-shrink: 0;
@@ -438,6 +439,49 @@ export const ImgWrapper = styled.div<{
     background-image: url(${(props) => props.$bgImgSm});
     width: ${(props) => props.$minWidth + "px"};
     height: ${(props) => props.$minHeight + "px"};
+  }
+`;
+
+interface ImgWrapperProps {
+  $bgColor?: string;
+  $maxWidth?: number;
+  $minWidth?: number;
+  $maxHeight?: number;
+  $minHeight?: number;
+  $ImgMaxWidth: number;
+  $ImgMinWidth: number;
+  $ImgMaxHeight: number;
+  $ImgMinHeight: number;
+  $bgImg?: string;
+  $bgImgSm?: string;
+}
+
+export const ImgWrappers = styled.div<ImgWrapperProps>`
+  background: ${(props) => props.$bgColor};
+  border-radius: 8px;
+  width: ${(props) => props.$maxWidth + "px" || "auto"};
+  height: ${(props) => props.$maxHeight + "px" || "auto"};
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-sizing: border-box;
+  flex-shrink: 0;
+
+  img {
+    width: ${(props) => props.$ImgMaxWidth + "px"};
+    height: ${(props) => props.$ImgMaxHeight + "px"};
+  }
+
+  @media (max-width: 768px) {
+    width: ${(props) => props.$minWidth + "px" || "auto"};
+    height: ${(props) => props.$minHeight + "px" || "auto"};
+
+    img {
+      width: ${(props) => props.$ImgMinWidth + "px"};
+      height: ${(props) => props.$ImgMinHeight + "px"};
+    }
   }
 `;
 
@@ -457,14 +501,19 @@ export const GridContainer = styled.div`
 `;
 
 export const Scrollview = styled(FlexWithCustomGapStyles)`
-  //@media (max-width: 768px) {
+  width: auto;
   display: flex;
   overflow-x: auto;
-  width: 90vw;
-  //justify-content: flex-start;
 
-  //align-items: flex-start;
-  /* margin: 0px 40px; */
-  //width: 100vw;
-  //}
+  align-items: flex-start;
+  justify-content: flex-start;
+  @media (max-width: 768px) {
+    width: 600px;
+  }
+  @media (max-width: 425px) {
+    width: 340px;
+  }
+  @media (max-width: 360px) {
+    width: 320px;
+  }
 `;
