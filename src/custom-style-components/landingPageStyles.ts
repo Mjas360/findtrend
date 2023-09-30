@@ -509,6 +509,7 @@ export const Scrollview = styled(FlexWithCustomGapStyles)`
   justify-content: flex-start;
   @media (max-width: 768px) {
     width: 600px;
+    padding-bottom: 12px;
   }
   @media (max-width: 425px) {
     width: 340px;
