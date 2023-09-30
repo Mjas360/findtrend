@@ -1,14 +1,13 @@
-import { tweetImg } from "../../../constants";
+import { SocialIcons, TweetScreenShots } from "../../../constants";
 import {
   AppWrapperStyles,
   ButtonStylesVarientII,
   FlexWithCustomGapStyles,
   H1,
-  ImgWrapper,
+  ImgWrappers,
   Scrollview,
   SectionsStyles,
 } from "../../../custom-style-components/landingPageStyles";
-import { getImage } from "../../utils/utility";
 
 export default function SectionThree() {
   return (
@@ -26,45 +25,48 @@ export default function SectionThree() {
           </H1>
           <FlexWithCustomGapStyles>
             <Scrollview $aligItems="left" $gap={24} $minGap={16}>
-              {Array(8)
-                .fill(null)
-                .map((_, index) => {
-                  const socialImg = getImage(
-                    `social_icon_${index + 1}.png`,
-                    "png"
-                  );
-                  const socialImgSm = getImage(
-                    `social_icon_sm_${index + 1}.png`,
-                    "png"
-                  );
-                  return (
-                    <ImgWrapper
-                      key={_ + "social_icon" + index}
-                      $bgColor={index === 1 ? "#A8FF35" : "#FFF"}
-                      $maxWidth={124}
-                      $maxHeight={124}
-                      $minWidth={64}
-                      $minHeight={64}
-                      $bgImg={socialImg}
-                      $bgImgSm={socialImgSm}
-                      //   onClick={() => setActiveTab(index)}
-                    />
-                  );
-                })}
+              {SocialIcons.map((img, index) => (
+                <ImgWrappers
+                  key={"social_icon_" + index}
+                  $bgColor={index === 1 ? "#A8FF35" : "#FFF"}
+                  $ImgMaxHeight={img.maxHeight}
+                  $ImgMaxWidth={img.maxWidth}
+                  $ImgMinHeight={img.minHeight}
+                  $ImgMinWidth={img.minWidth}
+                  $maxHeight={124}
+                  $maxWidth={124}
+                  $minHeight={64}
+                  $minWidth={64}
+                >
+                  <img
+                    src={img.src}
+                    width={190}
+                    height={40}
+                    alt={"social_icon_" + index}
+                  />
+                </ImgWrappers>
+              ))}
             </Scrollview>
           </FlexWithCustomGapStyles>
-          {tweetImg.map((img, index) => (
-            <ImgWrapper
-              key={"tweetImage_" + index}
-              $bgColor="none"
-              $maxWidth={img.maxWidth}
-              $maxHeight={img.maxHeight}
-              $minWidth={img.minWidth}
-              $minHeight={img.minHeight}
-              $bgImg={getImage(img.imgLg, "png")}
-              $bgImgSm={getImage(img.imgSm, "png")}
-            />
-          ))}
+          <FlexWithCustomGapStyles $vertical $gap={43} $minGap={16}>
+            {TweetScreenShots.map((img, index) => (
+              <ImgWrappers
+                key={"tweet_screenshot_" + index}
+                $bgColor="none"
+                $ImgMaxHeight={img.maxHeight}
+                $ImgMaxWidth={img.maxWidth}
+                $ImgMinHeight={img.minHeight}
+                $ImgMinWidth={img.minWidth}
+              >
+                <img
+                  src={img.src}
+                  width={190}
+                  height={40}
+                  alt={"tweet_screenshot_" + index}
+                />
+              </ImgWrappers>
+            ))}
+          </FlexWithCustomGapStyles>
 
           <ButtonStylesVarientII $bgColor="#000" $padding>
             View More Trend
