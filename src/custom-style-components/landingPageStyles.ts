@@ -52,6 +52,7 @@ export const FlexWithCustomGapStyles = styled.div<{
   $minGap?: number;
   $vertical?: boolean;
   $aligItems?: "left" | "right" | "center";
+  $width?: number;
 }>`
   display: flex;
   position: relative;
@@ -68,28 +69,39 @@ export const FlexWithCustomGapStyles = styled.div<{
     }
   }};
   flex-direction: ${(props) => (props.$vertical ? "column" : "row")};
-  //gap: ${(props) => `clamp(0px, 45vw, ${props.$gap}px)` || "10px"};
   gap: ${(props) => props.$gap + "px"};
-  //width: 100vw;
+
+  max-width: ${(props) => props.$width + "px" || "auto"};
 
   @media (max-width: 768px) {
     gap: ${(props) => props.$minGap + "px"};
   }
 `;
 
-export const ButtonStyles = styled.button<{ $btnType?: string }>`
+export const ButtonStyles = styled.button<{
+  $btnType?: "primary" | "text";
+  $btnBgColor?: string;
+  $btnTextColor?: string;
+  $fullWidth?: boolean;
+  $btnFontWeight?: number;
+}>`
   color: ${(props) => (props.$btnType === "primary" ? "#000000" : "#FFF")};
   font-size: 16px;
-  font-weight: 400;
-  /* font-family: "Effra"; */
+  font-weight: ${(props) => props.$btnFontWeight || 400};
   line-height: 100%;
-  padding: 12px 32px;
   outline: none;
   border: none;
   border-radius: 40px;
-  /* border-radius: 40px; ${(props) =>
-    props.$btnType === "primary" ? "40px" : "none"}; */
-  background: ${(props) => (props.$btnType === "primary" ? "#FFF" : "none")};
+
+  padding: 16px 32px;
+
+  background: ${(props) =>
+    props.$btnType === "primary" ? props.$btnBgColor : "none"};
+
+  color: ${(props) => props.$btnTextColor || "#00000"};
+
+  width: ${(props) => (props.$fullWidth ? "100%" : "auto")};
+
   cursor: pointer;
   transition: all 0.2s ease-in-out;
 
@@ -100,6 +112,10 @@ export const ButtonStyles = styled.button<{ $btnType?: string }>`
   &:active {
     opacity: 0.99;
     scale: 0.9;
+  }
+
+  @media (max-width: 768px) {
+    padding: 12px 24px;
   }
 `;
 
@@ -124,6 +140,44 @@ export const ButtonStylesVarientII = styled(ButtonStyles)<{
 
 export const NavLinkStyles = styled(ButtonStyles)`
   padding: 12px 0px;
+`;
+
+export const Switch = styled.div<{ $switched: boolean }>`
+  width: 86px;
+  height: 40px;
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+
+  justify-content: ${(props) => (props.$switched ? "flex-end" : "flex-start")};
+  background: ${(props) => (props.$switched ? " #a8ff35" : "#fff")};
+
+  padding: 5px;
+  border-radius: 100px;
+  transition: all 0.3s ease-in-out;
+
+  cursor: pointer;
+  &:hover {
+    opacity: 0.95;
+  }
+
+  .slider {
+    height: 38px;
+    width: 38px;
+    background: ${(props) => (props.$switched ? " #FFF" : "#a8ff35")};
+    border-radius: 100px;
+  }
+
+  @media (max-width: 768px) {
+    width: 72px;
+    height: 30px;
+
+    .slider {
+      height: 28px;
+      width: 28px;
+    }
+  }
 `;
 
 export const AppTitleStyles = styled.p<{ $light?: boolean }>`
@@ -204,19 +258,34 @@ export const H1 = styled.h1<{
   }
 `;
 
-export const Paragraph = styled.p<{ $color?: string }>`
+export const Paragraph = styled.p<{
+  $color?: string;
+  $maxFontsize?: number;
+  $minFontsize?: number;
+  $alignText?: "left" | "center" | "right";
+}>`
   color: ${(props) => props.$color};
-  text-align: center;
-  font-size: 18px;
+  font-size: ${(props) => props.$maxFontsize + "px" || "18px"};
   font-style: normal;
   font-weight: 400;
   line-height: 150%;
   width: 666px;
   margin: 0;
+  text-align: ${(props) => {
+    switch (props.$alignText) {
+      case "left":
+        return "left";
+      case "right":
+        return "right";
+      case "center":
+      default:
+        return "center";
+    }
+  }};
 
   @media (max-width: 768px) {
     width: 286px;
-    font-size: 14px;
+    font-size: ${(props) => props.$minFontsize + "px" || "14px"};
   }
 `;
 
@@ -232,13 +301,15 @@ export const FancyButton = styled(ButtonStyles)`
   }
 `;
 
-export const TextAndArrow = styled.div<{
+interface TextAndArrowProps {
   $color?: string;
   $inverse?: boolean;
   $alignEnd?: boolean;
   $displayOnSmallScreen?: boolean;
   $absolute?: boolean;
-}>`
+}
+
+export const TextAndArrow = styled.div<TextAndArrowProps>`
   display: flex;
   flex-direction: ${(props) => (props.$inverse ? "column-reverse" : "column")};
   align-items: ${(props) => (props.$alignEnd ? "end" : "start")};
@@ -248,7 +319,7 @@ export const TextAndArrow = styled.div<{
     transform: rotate(6deg);
     color: ${(props) => props.$color || "#FFF"};
     text-align: center;
-    font-family: New; // pending font
+    font-family: "Open Sans";
     font-size: 14px;
     font-weight: 400;
   }
@@ -258,12 +329,6 @@ export const TextAndArrow = styled.div<{
   @media (max-width: 1200px) {
     display: ${(props) => (props.$displayOnSmallScreen ? "flex" : "none")};
   }
-
-  /* @media (max-width: 500px) {
-    position: ${(props) => (props.$absolute ? "absolute" : "relative")};
-    left: 0;
-    top: 0;
-  } */
 
   @keyframes rotateAnimation {
     0% {
@@ -413,34 +478,34 @@ export const Span = styled.span<{ $color?: string }>`
   color: ${(props) => props.$color};
 `;
 
-export const ImgWrapper = styled.div<{
-  $bgColor: string;
-  $maxWidth: number;
-  $minWidth: number;
-  $maxHeight: number;
-  $minHeight: number;
-  $bgImg?: string;
-  $bgImgSm?: string;
-}>`
-  background: ${(props) => props.$bgColor};
-  border-radius: 8px;
-  width: ${(props) => props.$maxWidth + "px"};
-  height: ${(props) => props.$maxHeight + "px"};
+// export const ImgWrapper = styled.div<{
+//   $bgColor: string;
+//   $maxWidth: number;
+//   $minWidth: number;
+//   $maxHeight: number;
+//   $minHeight: number;
+//   $bgImg?: string;
+//   $bgImgSm?: string;
+// }>`
+//   background: ${(props) => props.$bgColor};
+//   border-radius: 8px;
+//   width: ${(props) => props.$maxWidth + "px"};
+//   height: ${(props) => props.$maxHeight + "px"};
 
-  background-image: url(${(props) => props.$bgImg});
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: contain;
+//   background-image: url(${(props) => props.$bgImg});
+//   background-position: center center;
+//   background-repeat: no-repeat;
+//   background-size: contain;
 
-  box-sizing: border-box;
-  flex-shrink: 0;
+//   box-sizing: border-box;
+//   flex-shrink: 0;
 
-  @media (max-width: 768px) {
-    background-image: url(${(props) => props.$bgImgSm});
-    width: ${(props) => props.$minWidth + "px"};
-    height: ${(props) => props.$minHeight + "px"};
-  }
-`;
+//   @media (max-width: 768px) {
+//     background-image: url(${(props) => props.$bgImgSm});
+//     width: ${(props) => props.$minWidth + "px"};
+//     height: ${(props) => props.$minHeight + "px"};
+//   }
+// `;
 
 interface ImgWrapperProps {
   $bgColor?: string;
@@ -448,10 +513,10 @@ interface ImgWrapperProps {
   $minWidth?: number;
   $maxHeight?: number;
   $minHeight?: number;
-  $ImgMaxWidth: number;
-  $ImgMinWidth: number;
-  $ImgMaxHeight: number;
-  $ImgMinHeight: number;
+  $ImgMaxWidth?: number;
+  $ImgMinWidth?: number;
+  $ImgMaxHeight?: number;
+  $ImgMinHeight?: number;
   $bgImg?: string;
   $bgImgSm?: string;
 }
@@ -518,3 +583,101 @@ export const Scrollview = styled(FlexWithCustomGapStyles)`
     width: 320px;
   }
 `;
+
+interface PaymentCardProps {
+  $bgColor?: string;
+}
+
+export const PricingCard = styled.div<PaymentCardProps>`
+  display: flex;
+  flex-direction: column;
+
+  align-items: flex-start;
+  justify-content: flex-start;
+
+  padding: 24px 32px;
+  background: ${(props) => props.$bgColor || "none"};
+
+  width: 360px;
+  height: 640px;
+
+  border-radius: 16px;
+
+  box-sizing: border-box;
+
+  .price {
+    width: 100%;
+    margin-top: 30px;
+  }
+  .offers {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    height: 100%;
+    .offer {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    width: 339px;
+    height: 602px;
+
+    padding: 24px 30px;
+
+    .offers {
+      margin-top: 18px;
+    }
+  }
+
+  @media (max-width: 425px) {
+    width: 300px;
+    padding: 20px 24px;
+  }
+`;
+
+export const Divider = styled.div<{ $color?: string }>`
+  height: 1px;
+  width: 100%;
+  margin-top: 32px;
+
+  background: ${(props) => [props.$color || "#333333"]};
+  opacity: 0.2;
+
+  @media (max-width: 768px) {
+    margin-top: 24px;
+  }
+`;
+
+export const PricingWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 24px;
+  }
+`;
+
+// interface PaymentCardProps {
+//   $minWidth?: number;
+//   $maxWidth?: number;
+//   $maxHeight?: number;
+//   $minHeight?: number;
+//   $maxPadding?: number;
+//   $minPadding?: number;
+//   $bgColor?: number;
+// }
+
+// export const Card = styled.div<PaymentCardProps>`
+//   width: ${(props) => props.$maxWidth + "px" || "auto"};
+//   height: ${(props) => props.$maxHeight + "px" || "auto"};
+//   padding: ${(props) => props.$maxPadding + "px" || "auto"};
+//   border-radius: 16px;
+//   background: ${(props) => props.$bgColor || "none"}; ;
+// `;
