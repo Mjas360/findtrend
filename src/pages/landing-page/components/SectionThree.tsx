@@ -68,7 +68,7 @@ export default function SectionThree() {
             ))}
           </FlexWithCustomGapStyles>
 
-          <ButtonStylesVarientII $bgColor="#000" $padding>
+          <ButtonStylesVarientII type="button" $bgColor="#000" $padding>
             View More Trend
           </ButtonStylesVarientII>
         </FlexWithCustomGapStyles>

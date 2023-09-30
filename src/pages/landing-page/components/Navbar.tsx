@@ -22,7 +22,7 @@ export default function Navbar() {
             src={getImage("findtrend_logo.svg")}
             width={40}
             height={40}
-            alt="logo"
+            alt="findtrend logo"
           />
           <AppTitleStyles $light>Findtrend</AppTitleStyles>
         </FlexWithCustomGapStyles>
@@ -34,8 +34,12 @@ export default function Navbar() {
           ))}
         </FlexWithCustomGapStyles>
         <FlexWithCustomGapStyles>
-          <ButtonStyles $btnType="text">Login</ButtonStyles>
-          <ButtonStyles $btnType="primary">Register</ButtonStyles>
+          <ButtonStyles type="button" $btnType="text">
+            Login
+          </ButtonStyles>
+          <ButtonStyles type="button" $btnType="primary" $btnBgColor="#FFF">
+            Register
+          </ButtonStyles>
         </FlexWithCustomGapStyles>
       </div>
       <div className="mobile_nav">
@@ -44,7 +48,7 @@ export default function Navbar() {
             src={getImage("findtrend_logo.svg")}
             width={40}
             height={40}
-            alt="logo"
+            alt="findtrend logo"
           />
           <NavLinkStyles onClick={() => setOpenMenu((prev) => !prev)}>
             {openMenu ? <AiOutlineClose /> : <HiOutlineMenuAlt4 />}
@@ -60,8 +64,12 @@ export default function Navbar() {
               </NavLinkStyles>
             ))}
           </>
-          <ButtonStyles $btnType="text">Login</ButtonStyles>
-          <ButtonStyles $btnType="primary">Register</ButtonStyles>
+          <ButtonStyles type="button" $btnType="text">
+            Login
+          </ButtonStyles>
+          <ButtonStyles type="button" $btnType="primary">
+            Register
+          </ButtonStyles>
         </MenuStyles>
       )}
     </NavbarStyle>
