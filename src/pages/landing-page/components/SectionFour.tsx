@@ -86,7 +86,7 @@ export default function SectionFour() {
                   <H1
                     as="h3"
                     $maxFontsize={64}
-                    $minFontsize={32}
+                    $minFontsize={58}
                     $color="#000"
                     $alignText="left"
                   >

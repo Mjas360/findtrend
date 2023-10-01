@@ -610,7 +610,7 @@ export const PricingCard = styled.div<PaymentCardProps>`
 
   .price {
     width: 100%;
-    margin-top: 30px;
+    margin-top: 24px;
   }
   .offers {
     margin-top: 20px;
@@ -627,12 +627,13 @@ export const PricingCard = styled.div<PaymentCardProps>`
 
   @media (max-width: 768px) {
     width: 339px;
-    height: 602px;
+    height: auto;
 
     padding: 24px 30px;
 
     .offers {
       margin-top: 18px;
+      margin-bottom: 48px;
     }
   }
 
@@ -671,7 +672,6 @@ export const ResponsiveWrapper = styled.div<{ $justifyItems?: string }>`
 export const FooterStyles = styled(ResponsiveWrapper)`
   @media (max-width: 768px) {
     margin: 80px 0px;
-    
   }
 `;
 
