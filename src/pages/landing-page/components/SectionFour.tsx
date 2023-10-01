@@ -90,10 +90,10 @@ export default function SectionFour() {
                     $color="#000"
                     $alignText="left"
                   >
-                    ${info.price}
+                    ${info.price}{switchValue ? "0" : ""}
                     <Paragraph $maxFontsize={18} $minFontsize={18} as="span">
                       {" "}
-                      / Month
+                      / {switchValue ? "Year" : "Month"}
                     </Paragraph>
                   </H1>
                 </div>
