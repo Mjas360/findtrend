@@ -25,7 +25,7 @@ export default function Footer() {
             <AppTitleStyles>Findtrend</AppTitleStyles>
           </FlexWithCustomGapStyles>
 
-          <ResponsiveWrapper $justifyItems="flex-end">
+          <ResponsiveWrapper $justifyItems="flex-end" $marginTop={40}>
             {FooterlinksTitle.map((nav, index) => (
               <NavLinkStyles
                 $btnTextColor="#333"

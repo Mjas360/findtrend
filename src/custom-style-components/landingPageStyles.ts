@@ -656,7 +656,10 @@ export const Divider = styled.div<{ $color?: string }>`
   }
 `;
 
-export const ResponsiveWrapper = styled.div<{ $justifyItems?: string }>`
+export const ResponsiveWrapper = styled.div<{
+  $justifyItems?: string;
+  $marginTop?: number;
+}>`
   display: flex;
   align-items: center;
   justify-content: ${(props) => props.$justifyItems || "center"};
@@ -664,6 +667,7 @@ export const ResponsiveWrapper = styled.div<{ $justifyItems?: string }>`
   width: 100%;
 
   @media (max-width: 768px) {
+    margin-top: ${(props) => props.$marginTop + "px" || "0px"};
     flex-direction: column;
     gap: 24px;
   }

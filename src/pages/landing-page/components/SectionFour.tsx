@@ -90,7 +90,8 @@ export default function SectionFour() {
                     $color="#000"
                     $alignText="left"
                   >
-                    ${info.price}{switchValue ? "0" : ""}
+                    ${info.price}
+                    {switchValue ? "0" : ""}
                     <Paragraph $maxFontsize={18} $minFontsize={18} as="span">
                       {" "}
                       / {switchValue ? "Year" : "Month"}
@@ -119,6 +120,7 @@ export default function SectionFour() {
                   $btnTextColor={info.btnTextColor}
                   $btnFontWeight={700}
                   $fullWidth
+                  type="button"
                 >
                   Start Free Trial
                 </ButtonStyles>
