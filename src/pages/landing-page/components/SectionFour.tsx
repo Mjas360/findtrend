@@ -10,7 +10,7 @@ import {
   SectionsStyles,
   Switch,
   TextAndArrow,
-  PricingWrapper,
+  ResponsiveWrapper,
 } from "../../../custom-style-components/landingPageStyles";
 import { getImage } from "../../utils/utility";
 import { PricingInfo } from "../../../constants";
@@ -60,7 +60,7 @@ export default function SectionFour() {
               />
             </TextAndArrow>
           </FlexWithCustomGapStyles>
-          <PricingWrapper>
+          <ResponsiveWrapper>
             {PricingInfo.map((info, index) => (
               <PricingCard $bgColor={info.bgColor} key={info.type + index}>
                 <H1
@@ -124,7 +124,7 @@ export default function SectionFour() {
                 </ButtonStyles>
               </PricingCard>
             ))}
-          </PricingWrapper>
+          </ResponsiveWrapper>
         </FlexWithCustomGapStyles>
       </SectionsStyles>
     </AppWrapperStyles>

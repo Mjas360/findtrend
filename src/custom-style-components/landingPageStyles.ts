@@ -446,9 +446,12 @@ export const FancyFloatingCardResponsiveWrapper = styled.div`
   }
 `;
 
-export const SectionsStyles = styled(PgeResponsiveWidth)`
+export const SectionsStyles = styled(PgeResponsiveWidth)<{
+  $noPadding?: boolean;
+}>`
   //width: 100vw;
-  padding: clamp(80px, 10vw, 140px) 12px;
+  padding: ${(props) =>
+    props.$noPadding ? "auto" : "clamp(80px, 10vw, 140px) 12px"};
   overflow: hidden;
   box-sizing: border-box;
   flex-shrink: 0;
@@ -652,15 +655,23 @@ export const Divider = styled.div<{ $color?: string }>`
   }
 `;
 
-export const PricingWrapper = styled.div`
+export const ResponsiveWrapper = styled.div<{ $justifyItems?: string }>`
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: ${(props) => props.$justifyItems || "center"};
   gap: 40px;
+  width: 100%;
 
   @media (max-width: 768px) {
     flex-direction: column;
     gap: 24px;
+  }
+`;
+
+export const FooterStyles = styled(ResponsiveWrapper)`
+  @media (max-width: 768px) {
+    margin: 80px 0px;
+    
   }
 `;
 

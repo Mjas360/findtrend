@@ -6,6 +6,13 @@ export const NavlinksTitle = [
   "Features",
 ];
 
+export const FooterlinksTitle = [
+  "Privacy Policy",
+  "Terms and Conditions",
+  "Contact Us",
+  "Careers",
+];
+
 export const FancyFloatingCardTextAndIcon = [
   {
     text: "Cryptopunk - Search",
