@@ -1,4 +1,4 @@
-import { LogoSourceLink, SectionThreeTextArray } from "../../../constants";
+import { BrandLogoLink, SectionThreeTextArray } from "../../../constants";
 import {
   AppWrapperStyles,
   FlexWithCustomGapStyles,
@@ -40,7 +40,7 @@ export default function SectionTwo() {
             </H1>
 
             <GridContainer>
-              {LogoSourceLink.map((img, index) => (
+              {BrandLogoLink.map((img, index) => (
                 <ImgWrappers
                   key={"brand_logo_" + index}
                   $bgColor="#F5F5F5"
